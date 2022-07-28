@@ -9,10 +9,10 @@ namespace SampleEventHubMessageSend
     class Program
     {
         // connection string to the Event Hubs namespace
-        private const string connectionString = "Endpoint=sb://des.windows.net/;SharedAccessKeyName=Policy01;SharedAcXZF+DyH+A8+aWOCCg=;EntityPath=customers";
+        private const string connectionString = "Endpoint=sb://demo-xxxs.net/;SharedAccessKeyName=mypolicy;SharedAccessKey=GcSxxxxxFLalYCA=;EntityPath=customer";
 
         // name of the event hub
-        private const string eventHubName = "customers";
+        private const string eventHubName = "customer";
 
         // number of events to be sent to the event hub
         private const int numOfEvents = 3;
