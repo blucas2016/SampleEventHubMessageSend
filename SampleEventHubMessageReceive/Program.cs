@@ -26,11 +26,15 @@ namespace SampleEventHubMessageReceive
             // Read from the default consumer group: $Default
             string consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
 
+            var processorOptions = new EventProcessorClientOptions();
+            processorOptions.ConnectionOptions.TransportType = EventHubsTransportType.AmqpWebSockets;
+
+
             // Create a blob container client that the event processor will use 
             storageClient = new BlobContainerClient(blobStorageConnectionString, blobContainerName);
 
             // Create an event processor client to process events in the event hub
-            processor = new EventProcessorClient(storageClient, consumerGroup, ehubNamespaceConnectionString, eventHubName);
+            processor = new EventProcessorClient(storageClient, consumerGroup, ehubNamespaceConnectionString, eventHubName, processorOptions);
 
             // Register handlers for processing events and handling errors
             processor.ProcessEventAsync += ProcessEventHandler;

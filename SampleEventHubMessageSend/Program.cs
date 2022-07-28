@@ -22,7 +22,9 @@ namespace SampleEventHubMessageSend
         static async Task Main()
         {
             // Create a producer client that you can use to send events to an event hub
-            producerClient = new EventHubProducerClient(connectionString, eventHubName);
+            var websocket = new EventHubProducerClientOptions();
+            websocket.ConnectionOptions.TransportType = EventHubsTransportType.AmqpWebSockets;
+            producerClient = new EventHubProducerClient(connectionString, eventHubName, websocket);
 
             // Create a batch of events 
             using EventDataBatch eventBatch = await producerClient.CreateBatchAsync();
